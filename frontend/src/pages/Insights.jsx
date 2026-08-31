@@ -7,7 +7,7 @@ export default function Insights() {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/insights", {
+    fetch("http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/insights", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("crimenet_token")}`,
       },
@@ -32,7 +32,7 @@ export default function Insights() {
   const toggleReviewed = async (id) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/insights/${id}/review`,
+        `http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/insights/${id}/review`,
         {
           method: "PATCH",
           headers: {

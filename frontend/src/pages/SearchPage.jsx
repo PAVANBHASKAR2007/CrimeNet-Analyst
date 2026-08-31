@@ -20,7 +20,7 @@ export default function SearchPage() {
       const token = localStorage.getItem("crimenet_token");
 
       const response = await fetch(
-        `http://127.0.0.1:8000/api/search?q=${encodeURIComponent(
+        `http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/search?q=${encodeURIComponent(
           query.trim()
         )}`,
         {
