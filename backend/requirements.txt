@@ -1,0 +1,14 @@
+fastapi==0.141.1
+uvicorn==0.52.4
+sqlalchemy==2.0.52
+pydantic==2.13.5
+python-multipart==0.0.32
+pdfplumber==0.11.10
+spacy==3.8.16
+rapidfuzz==3.14.5
+python-jose==3.5.0
+passlib==1.7.4
+bcrypt==4.0.1
+
+# spaCy English NER model (required by app/nlp/extractor.py)
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
