@@ -7,7 +7,7 @@ export default function Insights() {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetch("http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/insights", {
+    fetch("https://crimenet-analyst.onrender.com/api/insights", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("crimenet_token")}`,
       },
@@ -32,7 +32,7 @@ export default function Insights() {
   const toggleReviewed = async (id) => {
     try {
       const response = await fetch(
-        `http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/insights/${id}/review`,
+        `https://crimenet-analyst.onrender.com/api/insights/${id}/review`,
         {
           method: "PATCH",
           headers: {
@@ -62,8 +62,14 @@ export default function Insights() {
   };
 
   const filteredInsights = insights.filter((insight) => {
-    if (filter === "reviewed") return insight.reviewed;
-    if (filter === "unreviewed") return !insight.reviewed;
+    if (filter === "reviewed") {
+      return insight.reviewed;
+    }
+
+    if (filter === "unreviewed") {
+      return !insight.reviewed;
+    }
+
     return true;
   });
 
@@ -91,6 +97,7 @@ export default function Insights() {
               marginBottom: "24px",
             }}
           >
+            {/* ALL */}
             <button
               onClick={() => setFilter("all")}
               style={{
@@ -107,6 +114,7 @@ export default function Insights() {
               All
             </button>
 
+            {/* UNREVIEWED */}
             <button
               onClick={() => setFilter("unreviewed")}
               style={{
@@ -127,6 +135,7 @@ export default function Insights() {
               Unreviewed
             </button>
 
+            {/* REVIEWED */}
             <button
               onClick={() => setFilter("reviewed")}
               style={{
@@ -139,7 +148,7 @@ export default function Insights() {
                     : "#111827",
                 color:
                   filter === "reviewed"
-                    ? "#f5a623"
+                    ? "#0b1017"
                     : "#e5e7eb",
                 cursor: "pointer",
               }}
@@ -148,6 +157,7 @@ export default function Insights() {
             </button>
           </div>
 
+          {/* LOADING */}
           {loading ? (
             <p>Loading insights...</p>
           ) : filteredInsights.length === 0 ? (
@@ -202,6 +212,7 @@ export default function Insights() {
                       </p>
                     </div>
 
+                    {/* SEVERITY */}
                     <div
                       style={{
                         padding: "6px 10px",
@@ -219,6 +230,7 @@ export default function Insights() {
                     </div>
                   </div>
 
+                  {/* RELATED DATA */}
                   <div
                     style={{
                       marginTop: "16px",
@@ -237,6 +249,7 @@ export default function Insights() {
                     </div>
                   </div>
 
+                  {/* REVIEW BUTTON */}
                   <button
                     onClick={() =>
                       toggleReviewed(insight.id)
