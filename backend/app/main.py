@@ -23,31 +23,28 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 @app.on_event("startup")
 def startup():
     init_db()
     db = next(get_db())
-    user = (
-    db.query(User)
-    .filter(User.username == "investigator")
-    .first()
-)
 
-if not user:
-    db.add(
-        User(
-            username="investigator",
-            password_hash=auth.hash_password("sih2026"),
-            full_name="Demo Investigator",
-            role="investigator",
-        )
+    existing_user = (
+        db.query(User)
+        .filter(User.username == "investigator")
+        .first()
     )
-else:
-    user.password_hash = auth.hash_password("sih2026")
 
-db.commit()
+    if not existing_user:
+        db.add(
+            User(
+                username="investigator",
+                password_hash=auth.hash_password("sih2026"),
+                full_name="Demo Investigator",
+                role="investigator",
+            )
+        )
+
+    db.commit()
 
 
 # ---------- AUTH ----------
