@@ -29,14 +29,23 @@ app.add_middleware(
 def startup():
     init_db()
     db = next(get_db())
-    if not db.query(User).filter(User.username == "investigator").first():
-        db.add(User(
+    user = db.query(User).filter(
+    User.username == "investigator"
+).first()
+
+if not user:
+    db.add(
+        User(
             username="investigator",
             password_hash=auth.hash_password("sih2026"),
             full_name="Demo Investigator",
             role="investigator",
-        ))
-        db.commit()
+        )
+    )
+else:
+    user.password_hash = auth.hash_password("sih2026")
+
+db.commit()
 
 
 # ---------- AUTH ----------
