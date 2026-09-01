@@ -29,9 +29,11 @@ app.add_middleware(
 def startup():
     init_db()
     db = next(get_db())
-    user = db.query(User).filter(
-    User.username == "investigator"
-).first()
+    user = (
+    db.query(User)
+    .filter(User.username == "investigator")
+    .first()
+)
 
 if not user:
     db.add(
