@@ -6,7 +6,7 @@ export default function NetworkAnalysis() {
   const [loading, setLoading] = useState(true);
   const [selectedNode, setSelectedNode] = useState(null);
   useEffect(() => {
-  fetch("http://HTTPS://CRIMENET-ANALYST.ONRENDER.COM/api/graph", {
+  fetch("https://crimenet-analyst.onrender.com/api/graph", {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("crimenet_token")}`,
   },
